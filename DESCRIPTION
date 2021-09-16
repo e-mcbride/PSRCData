@@ -11,3 +11,10 @@ Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 2.10)
+RoxygenNote: 7.1.1
+Imports:
+    dplyr (>= 1.0.7),
+    here (>= 1.0.1),
+    readr (>= 1.4.0),
+    stringr (>= 1.4.0),
+    usethis (>= 2.0.1)
