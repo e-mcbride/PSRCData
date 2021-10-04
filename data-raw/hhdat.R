@@ -18,7 +18,8 @@ raw_hh <- readr::read_csv(RawPath,
                    guess_max = 3500) #`guess_max` increases max # rows looked at to determine col type
 
 hhdat <- raw_hh %>%
-  mutate(hhincome_broad = ordered(hhincome_broad,
+  mutate(hhid = as.character(hhid),
+         hhincome_broad = ordered(hhincome_broad,
                                   c("Prefer not to answer",
                                     "Under $25,000",
                                     "$25,000-$49,999",
