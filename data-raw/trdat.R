@@ -21,6 +21,7 @@ raw_tr <- readr::read_csv(RawPath,
 trdat <- raw_tr %>%
   # get the columns mode_1 thru mode_4
   mutate(
+    across(c(personid, hhid, trip_id), ~ as.character(.x)),
     across(mode_1:mode_4,
            ~ factor(.x,
                     c("Walk (or jog/wheelchair)",
@@ -117,5 +118,10 @@ trdat <- raw_tr %>%
       )
 
   )
+
+# manynas17 <- raw_tr %>%
+#   filter(survey_year == 2017) %>%
+#   filter(is.na(arrival_time_mam)) %>%
+#   select(arrival_time_mam, arrival_time_hhmm)
 
 usethis::use_data(trdat, overwrite = TRUE, compress = "xz")
