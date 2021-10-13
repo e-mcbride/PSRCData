@@ -144,7 +144,12 @@ prdat <- raw_pr %>%
                             "Occasionally (1-2 days per week)",
                             "Rarely (1-3 times per month)",
                             "Never",
-                            "Not Applicable")))
+                            "Not Applicable"))),
+
+         across(starts_with("race") & !contains("race_category"),
+                       ~ factor(.x, c("Not Selected", "Selected")))
+
   )
+
 
 usethis::use_data(prdat, overwrite = TRUE, compress = "xz")
