@@ -19,7 +19,8 @@ raw_pr <- readr::read_csv(RawPath,
 
 prdat <- raw_pr %>%
   rename(personid = person_id) %>%
-  mutate(age = ordered(age,
+  mutate(across(c(personid, hhid), ~ as.character(.x)),
+    age = ordered(age,
                        c("Under 5 years old",
                          "5-11 years",
                          "12-15 years",
