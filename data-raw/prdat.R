@@ -20,7 +20,7 @@ raw_pr <- readr::read_csv(RawPath,
 prdat <- raw_pr %>%
   rename(personid = person_id) %>%
   mutate(across(c(personid, hhid), ~ as.character(.x)),
-    age = ordered(age,
+         age = ordered(age,
                        c("Under 5 years old",
                          "5-11 years",
                          "12-15 years",
@@ -148,7 +148,20 @@ prdat <- raw_pr %>%
                             "Not Applicable"))),
 
          across(starts_with("race") & !contains("race_category"),
-                       ~ factor(.x, c("Not Selected", "Selected")))
+                ~ factor(.x, c("Not Selected", "Selected"))),
+
+         race_category = factor(race_category,
+                                c("White Only",
+                                  "Child",
+                                  "Other",
+                                  "Asian",
+                                  "Missing",
+                                  "Hispanic",
+                                  "African American")),
+
+         worker = factor(worker,
+                         c("No jobs",
+                           "1+ job(s) (including part-time)"))
 
   )
 
