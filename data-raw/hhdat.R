@@ -79,7 +79,15 @@ hhdat <- raw_hh %>%
                               "Building with 4 or more apartments/condos",
                               "Mobile home/trailer",
                               "Dorm or institutional housing",
-                              "Other (including boat, RV, van, etc.)"))
+                              "Other (including boat, RV, van, etc.)")),
+
+         across(starts_with("res_factors"),
+                ~ ordered(.x,
+                          c("Very unimportant",
+                            "Somewhat unimportant",
+                            "Neither or N/A",
+                            "Somewhat important",
+                            "Very important"))),
   )
 
 
