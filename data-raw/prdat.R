@@ -37,7 +37,7 @@ prdat <- raw_pr %>%
                                 c("Under 18 years",
                                   "18-64 years",
                                   "65 years+")),
-         gender = ordered(gender,
+         gender = factor(gender,
                           c("Male",
                             "Female",
                             "Another",
@@ -148,6 +148,13 @@ prdat <- raw_pr %>%
                             "2-4 days/week",
                             "5 days/week",
                             "6-7 days/week"))),
+
+         across(starts_with("wbt_transit"),
+                ~ if_else(mode_freq_1 >= "5 days/week", "Already use 5+ days/week", .x)),
+
+         across(starts_with("wbt_bike"),
+                ~ if_else(mode_freq_2 >= "5 days/week", "Already use 5+ days/week", .x)),
+
          across(starts_with("wbt_"),
                 ~ ordered(.x,
                           c("Not Applicable",
@@ -155,7 +162,8 @@ prdat <- raw_pr %>%
                             "Rarely (1-3 times per month)",
                             "Occasionally (1-2 days per week)",
                             "Somewhat often (3-5 days per week)",
-                            "Regularly (6-7 days per week)"))),
+                            "Regularly (6-7 days per week)",
+                            "Already use 5+ days/week"))),
 
          across(starts_with("race") & !contains("race_category"),
                 ~ factor(.x, c("Not Selected", "Selected"))),
