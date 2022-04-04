@@ -121,33 +121,5 @@ trdat <- raw_tr %>%
 
   )
 
-# myModeVar <- trdat %>%
-#   select(personid, pernum, mode_1, mode_2, mode_simple, main_mode, driver, mode_full_EM)
-# myModeVar %>%
-#   filter(mode_full_EM %>% is.na()) %>%
-#   View()
-#
-# myModeVar %>%
-#   filter(driver == "Passenger") %>%
-#   View()
-#
-#
-# nahovpids <- myModeVar %>%
-#   filter(mode_full_EM %in% "HOV") %>%
-#   filter(is.na(driver)) %>%
-#   pull(personid) %>% unique()
-#   # group_by(driver) %>% summarise(n = n())
-#   # View()
-#
-# prdat %>%
-#   filter(personid %in% nahovpids) %>%
-#   select(personid, age, license, relationship) %>%
-#   # group_by(age) %>% summarise(n())
-#   group_by(license) %>%
-#   View()
-# manynas17 <- raw_tr %>%
-#   filter(survey_year == 2017) %>%
-#   filter(is.na(arrival_time_mam)) %>%
-#   select(arrival_time_mam, arrival_time_hhmm)
 
 usethis::use_data(trdat, overwrite = TRUE, compress = "xz")
